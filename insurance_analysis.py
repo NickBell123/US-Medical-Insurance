@@ -44,3 +44,21 @@ def calculate_average_bmi(data):
 # Test
 average_bmi = calculate_average_bmi(data)
 print(f"Average BMI of individuals is: {average_bmi:.2f}")
+
+# Function to compare costs between smokers and non-smokers
+def compare_smoker_costs(data):
+    smoker_costs = {'yes': [], 'no': []}
+    for row in data:
+        if row['smoker'] == 'yes':
+            smoker_costs['yes'].append(float(row['charges']))
+        elif row['smoker'] == 'no':
+            smoker_costs['no'].append(float(row['charges']))
+    average_smoker_cost = sum(smoker_costs['yes']) / len(smoker_costs['yes'])
+    average_non_smoker_cost = sum(smoker_costs['no']) / len(smoker_costs['no'])
+
+    return average_smoker_cost, average_non_smoker_cost
+
+# Test
+average_smoker_cost, average_non_smoker_cost = compare_smoker_costs(data)
+print(f"Average Cost for Smokers: {average_smoker_cost:.2f}")
+print(f"Average Cost for Non-Smokers: {average_non_smoker_cost:.2f}")
